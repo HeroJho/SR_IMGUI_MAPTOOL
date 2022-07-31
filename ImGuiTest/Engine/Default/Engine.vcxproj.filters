@@ -70,6 +70,15 @@
     <Filter Include="05.Timer\Manager">
       <UniqueIdentifier>{8ea00dd3-b334-4a35-b7db-eeca5ed73ea6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Components\VIBuffer\Cube">
+      <UniqueIdentifier>{eb94cdb7-7676-47ab-afba-da2583e702e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.Picking">
+      <UniqueIdentifier>{f6456749-8dce-494c-b841-9a1eebd754e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Components\VIBuffer\Voxel">
+      <UniqueIdentifier>{24090018-5e99-43db-bd25-7892564d2367}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Base.h">
@@ -150,6 +159,18 @@
     <ClInclude Include="..\public\Input_Device.h">
       <Filter>01.Device\Input</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\VIBuffer_Cube.h">
+      <Filter>04.Components\VIBuffer\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Picking.h">
+      <Filter>06.Picking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VIBuffer_Voxel.h">
+      <Filter>04.Components\VIBuffer\Voxel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VIModelVoxel.h">
+      <Filter>04.Components\VIBuffer\Voxel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Private\Base.cpp">
@@ -211,6 +232,18 @@
     </ClCompile>
     <ClCompile Include="..\private\Input_Device.cpp">
       <Filter>01.Device\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\VIBuffer_Cube.cpp">
+      <Filter>04.Components\VIBuffer\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Picking.cpp">
+      <Filter>06.Picking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VIBuffer_Voxel.cpp">
+      <Filter>04.Components\VIBuffer\Voxel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VIModelVoxel.cpp">
+      <Filter>04.Components\VIBuffer\Voxel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

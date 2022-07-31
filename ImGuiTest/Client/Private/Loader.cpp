@@ -7,7 +7,13 @@
 #include "Terrain.h"
 #include "Monster.h"
 #include "Player.h"
+#include "Cube.h"
+#include "SetCube.h"
+#include "VoxelCube.h"
+#include "SetVoxelCube.h"
+#include "VoxelModel.h"
 
+#include "CubeManager.h"
 
 CLoader::CLoader(LPDIRECT3DDEVICE9 pGraphic_Device)
 	: m_pGraphic_Device(pGraphic_Device)
@@ -97,15 +103,26 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Terrain"), 
 		CTerrain::Create(m_pGraphic_Device))))
 		return E_FAIL;
-
-	/* For.Prototype_GameObject_Player*/
-	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Player"),
-		CPlayer::Create(m_pGraphic_Device))))
+	/* For.Prototype_GameObject_Cube */
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Cube"),
+		CCube::Create(m_pGraphic_Device))))
+		return E_FAIL;
+	/* For.Prototype_GameObject_Cube */
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_SetCube"),
+		CSetCube::Create(m_pGraphic_Device))))
 		return E_FAIL;
 
-	/* For.Prototype_GameObject_Monster */
-	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_Monster"),
-		CMonster::Create(m_pGraphic_Device))))
+	/* For.Prototype_GameObject_VoxelCube */
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VoxelCube"),
+		CVoxelCube::Create(m_pGraphic_Device))))
+		return E_FAIL;
+	/* For.Prototype_GameObject_SetVoxelCube */
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_SetVoxelCube"),
+		CSetVoxelCube::Create(m_pGraphic_Device))))
+		return E_FAIL;
+	/* For.Prototype_GameObject_VoxelModel */
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_VoxelModel"),
+		CVoxelModel::Create(m_pGraphic_Device))))
 		return E_FAIL;
 
 	/* For.Prototype_GameObject_Camera_Free */
@@ -113,24 +130,59 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 		CCamera_Free::Create(m_pGraphic_Device))))
 		return E_FAIL;
 
+
+
+
+
+
+
 	lstrcpy(m_szLoadingText, TEXT("텍스쳐를 로딩중입니다. "));
 	/* 텍스쳐를 로드한다. */
 	/* For.Prototype_Component_Texture_Terrain */
 	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Terrain"),
 		CTexture::Create(m_pGraphic_Device, CTexture::TYPE_DEFAULT, TEXT("../Bin/Resources/Textures/Terrain/Grass_%d.tga"), 2))))
 		return E_FAIL;
-
 	/* For.Prototype_Component_Texture_Player */
 	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Player"),
 		CTexture::Create(m_pGraphic_Device, CTexture::TYPE_DEFAULT, TEXT("../Bin/Resources/Textures/Player/Player.png")))))
 		return E_FAIL;
+	/* For.Prototype_Component_Texture_Sky */
+	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Sky"),
+		CTexture::Create(m_pGraphic_Device, CTexture::TYPE_CUBEMAP, TEXT("../Bin/Resources/Textures/SkyBox/Sky_%d.dds"), 4))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Cube */
+	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Cube"),
+		CTexture::Create(m_pGraphic_Device, CTexture::TYPE_CUBEMAP, TEXT("../Bin/Resources/Textures/Cube/Tile%d.dds"), 29))))
+		return E_FAIL;
+
+	/* For.Prototype_Component_Texture_Cube */
+	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Tile"),
+		CTexture::Create(m_pGraphic_Device, CTexture::TYPE_DEFAULT, TEXT("../Bin/Resources/Textures/Cube/TileImage/Tile%d.png"), 20))))
+		return E_FAIL;
+
 
 
 	lstrcpy(m_szLoadingText, TEXT("모델을 로딩중입니다. "));
 	/* 모델를 로드한다. */
 	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Terrain"),
-		CVIBuffer_Terrain::Create(m_pGraphic_Device, 100, 100))))
+		CVIBuffer_Terrain::Create(m_pGraphic_Device, 10, 10))))
 		return E_FAIL;
+	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_Cube"),
+		CVIBuffer_Cube::Create(m_pGraphic_Device))))
+		return E_FAIL;
+	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_VoxelCube"),
+		CVIBuffer_Voxel::Create(m_pGraphic_Device))))
+		return E_FAIL;
+
+
+
+
+	
+
+
+
+
 
 	lstrcpy(m_szLoadingText, TEXT("로딩이 완료되었습니ㅏㄷ.  "));
 

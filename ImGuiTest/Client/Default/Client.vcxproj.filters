@@ -43,6 +43,33 @@
     <Filter Include="10.ImGui">
       <UniqueIdentifier>{5d73e508-a49e-4335-8cde-498fe76ad8d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="10.ImGui\ImGui_Manager">
+      <UniqueIdentifier>{7ab954c2-6ce1-40c2-9d2e-a1c03b69bb3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.ImGui\Default">
+      <UniqueIdentifier>{ef622da0-8000-4693-9185-113438e2819d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\Cube">
+      <UniqueIdentifier>{7f08aaf2-451d-4656-a309-179d78d1c0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\Cube\ToolCube">
+      <UniqueIdentifier>{e8fb26b4-1bb4-4b4b-92d3-f8f51f4abb47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\Cube\SetCube">
+      <UniqueIdentifier>{cfd3bbec-fa29-4295-bf00-f2a1f89981a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\Cube\CubeManager">
+      <UniqueIdentifier>{4caf1a6a-063f-41b6-b8f4-affab04e4398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\Cube\VoxelCube">
+      <UniqueIdentifier>{f24547a6-a3c8-4576-9693-1617d480865b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\Cube\SetVoxelCube">
+      <UniqueIdentifier>{7806dc1e-48ca-4996-9bae-e648ffc32719}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\VoxelModel">
+      <UniqueIdentifier>{90e723af-e047-4268-9930-9578edbb11fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -92,19 +119,40 @@
       <Filter>02.GameObject\Camera</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\imconfig.h">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\imgui.h">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\imgui_impl_dx9.h">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\imgui_impl_win32.h">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\imgui_internal.h">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\ImGui_Manager.h">
+      <Filter>10.ImGui\ImGui_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Cube.h">
+      <Filter>02.GameObject\Cube\ToolCube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\SetCube.h">
+      <Filter>02.GameObject\Cube\SetCube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\CubeManager.h">
+      <Filter>02.GameObject\Cube\CubeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\VoxelCube.h">
+      <Filter>02.GameObject\Cube\VoxelCube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\SetVoxelCube.h">
+      <Filter>02.GameObject\Cube\SetVoxelCube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VoxelModel.h">
+      <Filter>02.GameObject\VoxelModel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,25 +193,46 @@
       <Filter>02.GameObject\Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\imgui.cpp">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\imgui_demo.cpp">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\imgui_draw.cpp">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\imgui_impl_dx9.cpp">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\imgui_impl_win32.cpp">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\imgui_tables.cpp">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\imgui_widgets.cpp">
-      <Filter>10.ImGui</Filter>
+      <Filter>10.ImGui\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\ImGui_Manager.cpp">
+      <Filter>10.ImGui\ImGui_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Cube.cpp">
+      <Filter>02.GameObject\Cube\ToolCube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\SetCube.cpp">
+      <Filter>02.GameObject\Cube\SetCube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\CubeManager.cpp">
+      <Filter>02.GameObject\Cube\CubeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\VoxelCube.cpp">
+      <Filter>02.GameObject\Cube\VoxelCube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\SetVoxelCube.cpp">
+      <Filter>02.GameObject\Cube\SetVoxelCube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VoxelModel.cpp">
+      <Filter>02.GameObject\VoxelModel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

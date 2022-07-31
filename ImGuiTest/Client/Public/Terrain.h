@@ -33,6 +33,10 @@ private:
 private:
 	HRESULT SetUp_Components();
 
+private:
+	HRESULT Set_RenderState();
+	HRESULT Reset_RenderState();
+
 public:
 	static CTerrain* Create(LPDIRECT3DDEVICE9 pGraphic_Device);
 	virtual CGameObject* Clone(void* pArg);

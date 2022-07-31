@@ -2,7 +2,11 @@
 #include "..\Public\MainApp.h"
 
 #include "GameInstance.h"
+#include "ImGui_Manager.h"
+#include "CubeManager.h"
+
 #include "Level_Loading.h"
+
 
 using namespace Client;
 
@@ -34,8 +38,16 @@ HRESULT CMainApp::Initialize()
 	if (FAILED(Ready_Prototype_Component()))
 		return E_FAIL;
 
-	if (FAILED(Open_Level(LEVEL_LOGO)))
+
+	if (FAILED(CImGui_Manager::Get_Instance()->Init(m_pGraphic_Device)))
 		return E_FAIL;
+
+
+
+	if (FAILED(Open_Level(LEVEL_GAMEPLAY)))
+		return E_FAIL;
+
+
 	
 	return S_OK;
 }
@@ -50,6 +62,9 @@ void CMainApp::Tick(_float fTimeDelta)
 #endif // _DEBUG
 
 	m_pGameInstance->Tick_Engine(fTimeDelta);
+
+	CCubeManager::Get_Instance()->Tick(fTimeDelta);
+
 }
 
 HRESULT CMainApp::Render()
@@ -63,21 +78,26 @@ HRESULT CMainApp::Render()
 
 	m_pRenderer->Draw();
 
+	// CImGui_Manager::Get_Instance()->Render();
+
 	m_pGameInstance->Render_Level();
 
 	m_pGameInstance->Render_End();
+
+
+	CCubeManager::Get_Instance()->Render();
 
 #ifdef _DEBUG
 	++m_iNumDraw;
 
 	if (m_fTimeAcc >= 1.f)
 	{
-		wsprintf(m_szFPS, TEXT("fps : %d"), m_iNumDraw);
+		//wsprintf(m_szFPS, TEXT("fps : %d"), m_iNumDraw);
 		m_iNumDraw = 0;
 		m_fTimeAcc = 0.f;
 	}
 
-	SetWindowText(g_hWnd, m_szFPS);
+	//SetWindowText(g_hWnd, m_szFPS);
 #endif // _DEBUG
 
 	
@@ -173,9 +193,13 @@ CMainApp * CMainApp::Create()
 
 void CMainApp::Free()
 {
+	CCubeManager::Destroy_Instance();
+	CImGui_Manager::Destroy_Instance();
+
 	Safe_Release(m_pGraphic_Device);
 	Safe_Release(m_pRenderer);
 	Safe_Release(m_pGameInstance);
+
 
 	CGameInstance::Release_Engine();
 

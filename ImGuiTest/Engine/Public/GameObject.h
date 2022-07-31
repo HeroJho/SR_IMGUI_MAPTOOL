@@ -18,12 +18,17 @@ public:
 	virtual void LateTick(_float fTimeDelta);
 	virtual HRESULT Render();
 
+	_bool GetDead() { return m_bDead; }
+	void SetDead() { m_bDead = true; }
+
 protected:
 	LPDIRECT3DDEVICE9			m_pGraphic_Device = nullptr;
 
 protected: /* 객체에게 추가된 컴포넌트들을 키로 분류하여 보관한다. */
 	map<const _tchar*, class CComponent*>			m_Components;
 	typedef map<const _tchar*, class CComponent*>	COMPONENTS;
+
+	_bool m_bDead = false;
 
 protected:
 	HRESULT Add_Component(_uint iLevelIndex, const _tchar* pPrototypeTag, const _tchar* pComponentTag, class CComponent** ppOut, void* pArg = nullptr);

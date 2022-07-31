@@ -35,9 +35,19 @@ public:
 		return	*D3DXMatrixInverse(&WorldMatrixInv, nullptr, &m_WorldMatrix);
 	}
 
+	_float4x4 Get_WorldMatrix() {
+		return m_WorldMatrix;
+	}
+
 	void Set_State(STATETYPE eState, const _float3& State) {
 		memcpy(&m_WorldMatrix.m[eState][0], &State, sizeof(_float3));		
 	}
+
+	void Set_Scaled(_float3 vScale);
+	void Increase_ScaledXZ();
+	void Decrease_ScaledXZ();
+	void Increase_ScaledY();
+	void Decrease_ScaledY();
 
 public:
 	virtual HRESULT Initialize_Prototype() override;

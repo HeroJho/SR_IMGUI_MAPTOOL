@@ -21,6 +21,11 @@ HRESULT CTexture::Bind_Texture(_uint iTextureIndex)
 	return m_pGraphic_Device->SetTexture(0, m_Textures[iTextureIndex]);		
 }
 
+LPDIRECT3DBASETEXTURE9 CTexture::GetTexture(_uint iTextureIndex)
+{
+	return m_Textures[iTextureIndex];
+}
+
 HRESULT CTexture::Initialize_Prototype(TYPE eType, const _tchar * pTextureFilePath, _uint iNumTextures)
 {
 	_tchar		szFullPath[MAX_PATH] = TEXT("");

@@ -5,6 +5,9 @@
 #include "Transform.h"
 #include "VIBuffer_Rect.h"
 #include "VIBuffer_Terrain.h"
+#include "VIBuffer_Cube.h"
+#include "VIBuffer_Voxel.h"
+#include "VIModelVoxel.h"
 
 BEGIN(Engine)
 

@@ -19,6 +19,85 @@ _float3 CTransform::Get_Scaled() const
 		D3DXVec3Length(&Get_State(CTransform::STATE_LOOK)));
 }
 
+void CTransform::Set_Scaled(_float3 vScale)
+{
+	_float3		vRight = Get_State(CTransform::STATE_RIGHT);
+	_float3		vUp = Get_State(CTransform::STATE_UP);
+	_float3		vLook = Get_State(CTransform::STATE_LOOK);
+
+	Set_State(CTransform::STATE_RIGHT, *D3DXVec3Normalize(&vRight, &vRight) * vScale.x);
+	Set_State(CTransform::STATE_UP, *D3DXVec3Normalize(&vUp, &vUp) * vScale.y);
+	Set_State(CTransform::STATE_LOOK, *D3DXVec3Normalize(&vLook, &vLook) * vScale.z);
+}
+
+void CTransform::Increase_ScaledXZ()
+{
+	_float3		vScale = Get_Scaled();
+	vScale.x += 2.f;
+	vScale.z += 2.f;
+
+	_float3		vRight = Get_State(CTransform::STATE_RIGHT);
+	_float3		vUp = Get_State(CTransform::STATE_UP);
+	_float3		vLook = Get_State(CTransform::STATE_LOOK);
+
+	Set_State(CTransform::STATE_RIGHT, *D3DXVec3Normalize(&vRight, &vRight) * vScale.x);
+	Set_State(CTransform::STATE_UP, *D3DXVec3Normalize(&vUp, &vUp) * vScale.y);
+	Set_State(CTransform::STATE_LOOK, *D3DXVec3Normalize(&vLook, &vLook) * vScale.z);
+}
+void CTransform::Decrease_ScaledXZ()
+{
+	_float3		vScale = Get_Scaled();
+
+	if (vScale.x < 1.1f)
+	{
+		return;
+	}
+
+	vScale.x -= 2.f;
+	vScale.z -= 2.f;
+
+	_float3		vRight = Get_State(CTransform::STATE_RIGHT);
+	_float3		vUp = Get_State(CTransform::STATE_UP);
+	_float3		vLook = Get_State(CTransform::STATE_LOOK);
+
+	Set_State(CTransform::STATE_RIGHT, *D3DXVec3Normalize(&vRight, &vRight) * vScale.x);
+	Set_State(CTransform::STATE_UP, *D3DXVec3Normalize(&vUp, &vUp) * vScale.y);
+	Set_State(CTransform::STATE_LOOK, *D3DXVec3Normalize(&vLook, &vLook) * vScale.z);
+}
+
+void CTransform::Increase_ScaledY()
+{
+	_float3		vScale = Get_Scaled();
+	vScale.y += 2.f;
+
+	_float3		vRight = Get_State(CTransform::STATE_RIGHT);
+	_float3		vUp = Get_State(CTransform::STATE_UP);
+	_float3		vLook = Get_State(CTransform::STATE_LOOK);
+
+	Set_State(CTransform::STATE_RIGHT, *D3DXVec3Normalize(&vRight, &vRight) * vScale.x);
+	Set_State(CTransform::STATE_UP, *D3DXVec3Normalize(&vUp, &vUp) * vScale.y);
+	Set_State(CTransform::STATE_LOOK, *D3DXVec3Normalize(&vLook, &vLook) * vScale.z);
+}
+void CTransform::Decrease_ScaledY()
+{
+	_float3		vScale = Get_Scaled();
+
+	if (vScale.y < 1.1f)
+	{
+		return;
+	}
+
+	vScale.y -= 2.f;
+	
+	_float3		vRight = Get_State(CTransform::STATE_RIGHT);
+	_float3		vUp = Get_State(CTransform::STATE_UP);
+	_float3		vLook = Get_State(CTransform::STATE_LOOK);
+
+	Set_State(CTransform::STATE_RIGHT, *D3DXVec3Normalize(&vRight, &vRight) * vScale.x);
+	Set_State(CTransform::STATE_UP, *D3DXVec3Normalize(&vUp, &vUp) * vScale.y);
+	Set_State(CTransform::STATE_LOOK, *D3DXVec3Normalize(&vLook, &vLook) * vScale.z);
+}
+
 HRESULT CTransform::Initialize_Prototype()
 {
 	return S_OK;

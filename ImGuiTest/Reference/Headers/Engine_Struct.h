@@ -36,6 +36,12 @@ namespace Engine
 		unsigned long	dwColor;
 	}VTXCOL;
 
+	typedef struct tagVertexCubeTexture
+	{
+		D3DXVECTOR3		vPosition;
+		D3DXVECTOR3		vTexture;
+	}VTXCUBETEX;
+
 	typedef struct tagGraphicDesc
 	{
 		enum WINMODE { MODE_FULL, MODE_WIN, MODE_END };
@@ -47,4 +53,23 @@ namespace Engine
 
 	}GRAPHICDESC;
 
+
+
+
+	/*imgui - struct*/
+
+	typedef struct tagBlcokInfo
+	{
+		int x, y, z;
+		int iTileCount;
+	}BLOCK_INFO;
+
+	typedef struct tagVoxelInfo
+	{
+		int x, y, z;
+		float fScale;
+		float fX_Aix;
+		float fY_Aix;
+		float fZ_Aix;
+	}VOXEL_INFO;
 }
