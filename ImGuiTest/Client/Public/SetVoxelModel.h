@@ -7,32 +7,18 @@ BEGIN(Engine)
 class CTexture;
 class CRenderer;
 class CTransform;
-class CVIBuffer_Cube;
+class CVIModelVoxel;
 END
 
 
 BEGIN(Client)
 
-class CCube final : public CGameObject
+class CSetVoxelModel final : public CGameObject
 {
-public:
-	typedef struct tagCubeDesc
-	{
-		_float3	vPos;
-		_int	iIndex;
-		_int 	r, g ,b;
-	}CUBEDESC;
-	typedef struct tagModelDesc
-	{
-		_tchar  cModelName[256] = { 0 };
-		_float3	vPos;
-		_float3 vAix;
-		_float fScale;
-	}MODELDESC;
 private:
-	CCube(LPDIRECT3DDEVICE9 pGraphic_Device);
-	CCube(const CCube& rhs);
-	virtual ~CCube() = default;
+	CSetVoxelModel(LPDIRECT3DDEVICE9 pGraphic_Device);
+	CSetVoxelModel(const CSetVoxelModel& rhs);
+	virtual ~CSetVoxelModel() = default;
 
 public:
 	virtual HRESULT Initialize_Prototype() override;
@@ -45,12 +31,10 @@ private:
 	CTexture*				m_pTextureCom = nullptr;
 	CRenderer*				m_pRendererCom = nullptr;
 	CTransform*				m_pTransformCom = nullptr;
-	CVIBuffer_Cube*			m_pVIBufferCom = nullptr;
+	CVIModelVoxel*			m_pVIBufferCom = nullptr;
 
 private:
-	_float3			m_vTargetPos = _float3(0.f, 0.f, 0.f);
-	_bool  m_bKeyDown = false;
-
+	_tchar m_sFildName[256];
 
 private:
 	HRESULT Set_RenderState();
@@ -62,7 +46,7 @@ private:
 
 
 public:
-	static CCube* Create(LPDIRECT3DDEVICE9 pGraphic_Device);
+	static CSetVoxelModel* Create(LPDIRECT3DDEVICE9 pGraphic_Device);
 	virtual CGameObject* Clone(void* pArg);
 	virtual void Free() override;
 };

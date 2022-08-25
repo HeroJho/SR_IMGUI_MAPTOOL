@@ -64,12 +64,5 @@ namespace Engine
 		int iTileCount;
 	}BLOCK_INFO;
 
-	typedef struct tagVoxelInfo
-	{
-		int x, y, z;
-		float fScale;
-		float fX_Aix;
-		float fY_Aix;
-		float fZ_Aix;
-	}VOXEL_INFO;
+
 }

@@ -50,6 +50,15 @@ public:
 	_float Get_YAix() { return m_fY_Axis; }
 	_float Get_ZAix() { return m_fZ_Axis; }
 
+	_bool Get_CanCreate() { return m_bCanCreate; }
+	void Set_CanCreate(_bool CanCreate) { m_bCanCreate = CanCreate; }
+	_bool Get_CanMouse() { return m_bCanMouse; }
+	void Set_CanMouse(_bool CanMouse) { m_bCanMouse = CanMouse; }
+
+	_float3 Get_ModelPos() { return m_vModelPos; }
+
+	void SetDeleteCube(CGameObject* pObj, _float3 vPos);
+	void DeleteCube();
 
 public:
 	HRESULT Init(LPDIRECT3DDEVICE9 pDevice);
@@ -84,8 +93,17 @@ private:
 	_bool m_bMap = false;
 	_bool m_bVoxel = false;
 	_bool m_bTotal = false;
+	_bool m_bCanCreate = false;
+	_bool m_bCanMouse = false;
 
 	string m_sCurVoxel;
+
+
+	CGameObject*			m_pDeleteCubeTemp = nullptr;
+	_float					m_MinDist = 99999.f;
+	_float3					m_vDeletePos;
+
+	_float3					m_vModelPos;
 
 private:
 	BLOCK_INFO m_Block_Info;

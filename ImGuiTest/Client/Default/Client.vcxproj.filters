@@ -70,6 +70,9 @@
     <Filter Include="02.GameObject\VoxelModel">
       <UniqueIdentifier>{90e723af-e047-4268-9930-9578edbb11fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\SetVoxelModel">
+      <UniqueIdentifier>{4d32c542-3f36-4820-a7a7-709dd4731e33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -154,6 +157,9 @@
     <ClInclude Include="..\public\VoxelModel.h">
       <Filter>02.GameObject\VoxelModel</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\SetVoxelModel.h">
+      <Filter>02.GameObject\SetVoxelModel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Private\MainApp.cpp">
@@ -233,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="..\private\VoxelModel.cpp">
       <Filter>02.GameObject\VoxelModel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\SetVoxelModel.cpp">
+      <Filter>02.GameObject\SetVoxelModel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

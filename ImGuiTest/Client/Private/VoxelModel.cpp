@@ -42,42 +42,23 @@ HRESULT CVoxelModel::Initialize(void * pArg)
 
 void CVoxelModel::Tick(_float fTimeDelta)
 {
-	_float3 tempPos{ (_float)CImGui_Manager::Get_Instance()->Get_BlockInfo().x, (_float)CImGui_Manager::Get_Instance()->Get_BlockInfo().y, (_float)CImGui_Manager::Get_Instance()->Get_BlockInfo().z };
+
+
+	m_pTransformCom->RotationThree(_float3(1.0f, 0.f, 0.f), CImGui_Manager::Get_Instance()->Get_XAix(), _float3(0.f, 1.f, 0.f), CImGui_Manager::Get_Instance()->Get_YAix(), _float3(0.f, 0.f, 1.f), CImGui_Manager::Get_Instance()->Get_ZAix());
+	m_pTransformCom->Set_Scaled(CImGui_Manager::Get_Instance()->Get_Scale());
+
+
+
+	if (CImGui_Manager::Get_Instance()->Get_CanCreate())
+		return;
+
+	_float x = ((_float)CImGui_Manager::Get_Instance()->Get_BlockInfo().x) + ((_float)CImGui_Manager::Get_Instance()->Get_ModelPos().x);
+	_float y = ((_float)CImGui_Manager::Get_Instance()->Get_BlockInfo().y) + ((_float)CImGui_Manager::Get_Instance()->Get_ModelPos().y);
+	_float z = ((_float)CImGui_Manager::Get_Instance()->Get_BlockInfo().z) + ((_float)CImGui_Manager::Get_Instance()->Get_ModelPos().z);
+
+	_float3 tempPos{ x, y, z };
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, tempPos);
 
-	CGameInstance* pGameInstance = CGameInstance::Get_Instance();
-	Safe_AddRef(pGameInstance);
-
-	if (pGameInstance->Get_DIKState(DIK_P) & 0x80)
-	{
-		if (!m_bKeyDown)
-			m_pTransformCom->Increase_ScaledXZ();
-		m_bKeyDown = true;
-	}
-	else if (pGameInstance->Get_DIKState(DIK_O) & 0x80)
-	{
-		if (!m_bKeyDown)
-			m_pTransformCom->Decrease_ScaledXZ();
-		m_bKeyDown = true;
-	}
-	else if (pGameInstance->Get_DIKState(DIK_L) & 0x80)
-	{
-		if (!m_bKeyDown)
-			m_pTransformCom->Increase_ScaledY();
-		m_bKeyDown = true;
-	}
-	else if (pGameInstance->Get_DIKState(DIK_K) & 0x80)
-	{
-		if (!m_bKeyDown)
-			m_pTransformCom->Decrease_ScaledY();
-		m_bKeyDown = true;
-	}
-	else
-		m_bKeyDown = false;
-
-	Safe_Release(pGameInstance);
-
-	m_pRendererCom->Add_RenderGroup(CRenderer::RENDER_PRIORITY, this);
 }
 
 void CVoxelModel::LateTick(_float fTimeDelta)

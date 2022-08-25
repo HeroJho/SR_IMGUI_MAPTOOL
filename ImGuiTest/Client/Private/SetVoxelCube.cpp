@@ -63,8 +63,7 @@ void CSetVoxelCube::Tick(_float fTimeDelta)
 		{
 			if (!m_bKeyDown)
 			{
-				CCubeManager::Get_Instance()->RemoveCubeDesc(vPos);
-				m_bDead = true;
+				CImGui_Manager::Get_Instance()->SetDeleteCube(this, vPos);
 			}
 			m_bKeyDown = true;
 		}

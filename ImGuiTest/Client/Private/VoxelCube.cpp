@@ -88,7 +88,11 @@ HRESULT CVoxelCube::Render()
 	_int g = CImGui_Manager::Get_Instance()->GetVoxelColor().y * 255;
 	_int b = CImGui_Manager::Get_Instance()->GetVoxelColor().z * 255;
 
-	m_pVIBufferCom->SetColor(r, g, b);
+
+	if (CImGui_Manager::Get_Instance()->GetCulMode())
+		m_pVIBufferCom->SetColor(255, 255, 255);
+	else
+		m_pVIBufferCom->SetColor(r, g, b);
 
 
 	if (FAILED(m_pTransformCom->Bind_WorldMatrix()))

@@ -31,6 +31,8 @@ public:
 	void SaveVoxelData();
 	void LoadVoxelData();
 
+	void SaveModelData();
+
 	CTexture* Get_TextureCom() { return m_pTextureCom; }
 	void		Set_Cube(CTransform* pCube) { m_pCubeTranCom = pCube; Safe_AddRef(m_pCubeTranCom); }
 	void		Set_Col() { m_bCol = true; }
@@ -39,6 +41,9 @@ public:
 	void DrawAll_Cube();
 
 	list<string> GetVoxelString() { return m_sVoxelData; }
+
+
+
 
 public:
 	HRESULT Init(LPDIRECT3DDEVICE9 pDevice);
@@ -51,6 +56,7 @@ private:
 	list<CCube::CUBEDESC> m_CubeInfoList;
 
 	map<string, list<CCube::CUBEDESC>> m_Voxels;
+	list<CCube::MODELDESC> m_Models;
 
 	list<string> m_sVoxelData;
 
@@ -59,6 +65,7 @@ private:
 	_bool			m_bKeyDown = false;
 	_bool			m_bClick = false;
 	_bool			m_bCol = false;
+
 
 private:
 	CTexture*					m_pTextureCom = nullptr;

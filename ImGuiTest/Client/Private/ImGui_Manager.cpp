@@ -15,6 +15,7 @@ CImGui_Manager::CImGui_Manager()
 	, m_FileName("")
 {
 	ZeroMemory(&m_Block_Info, sizeof(BLOCK_INFO));
+	ZeroMemory(&m_vModelPos, sizeof(_float3));
 }
 
 HRESULT CImGui_Manager::Init(LPDIRECT3DDEVICE9 pGraphic_device)
@@ -116,10 +117,10 @@ void CImGui_Manager::Tick(_float fTimeDelta)
 		ImGui::Text("[ X: %d, Y: %d, Z: %d ] [ TileIndex = %d ]", m_Block_Info.x, m_Block_Info.y, m_Block_Info.z, m_Block_Info.iTileCount);
 
 		
-		if (28 < m_Block_Info.iTileCount)
+		if (30 < m_Block_Info.iTileCount)
 			m_Block_Info.iTileCount = 0;
 		if (0 > m_Block_Info.iTileCount)
-			m_Block_Info.iTileCount = 28;
+			m_Block_Info.iTileCount = 30;
 
 
 		ImGui::Checkbox("CulMode", &m_bCulMode);
@@ -265,13 +266,66 @@ void CImGui_Manager::ShowVoxelTool()
 	ImGui::Text("[ X_A: %.3f, Y_A: %.3f, Z_A: %.3f ]", m_fX_Axis, m_fY_Axis, m_fZ_Axis);
 	ImGui::Text("[ Scale = %.3f ]", m_fScale);
 
+	ImGui::SliderFloat("X_Axis", &m_fX_Axis, 0.0f, 360.0f);
+	ImGui::SliderFloat("Y_Axis", &m_fY_Axis, 0.0f, 360.0f);
+	ImGui::SliderFloat("Z_Axis", &m_fZ_Axis, 0.0f, 360.0f);
+	ImGui::SliderFloat("Scale", &m_fScale, 0.1f, 10.0f);
 
+	ImGui::InputFloat("Input PosX", &m_vModelPos.x);
+	ImGui::InputFloat("Input PosY", &m_vModelPos.y);
+	ImGui::InputFloat("Input PosZ", &m_vModelPos.z);
+
+
+
+	if (ImGui::Button("SaveModel"))
+		CCubeManager::Get_Instance()->SaveModelData();
 
 
 	if (ImGui::Button("Close Me"))
 		m_bShow_Voxel_Window = false;
 	ImGui::End();
 }
+
+
+
+void CImGui_Manager::SetDeleteCube(CGameObject * pObj, _float3 vPos)
+{
+	_float4x4		ViewMatrix;
+
+	m_pGraphic_device->GetTransform(D3DTS_VIEW, &ViewMatrix);
+
+	/* 카메라의 월드행렬이다. */
+	D3DXMatrixInverse(&ViewMatrix, nullptr, &ViewMatrix);
+
+	 //   *(_float3*)&m_WorldMatrix.m[eState][0];
+	_float3  CarView = *(_float3*)&ViewMatrix.m[3][0];
+
+
+	_float3 vDis = CarView - vPos;
+	_float fDis = D3DXVec3Length(&vDis);
+
+	if (fDis < m_MinDist)
+	{
+		m_pDeleteCubeTemp = pObj;
+		m_vDeletePos = vPos;
+		m_MinDist = fDis;
+	}
+}
+
+void CImGui_Manager::DeleteCube()
+{
+	if (nullptr == m_pDeleteCubeTemp)
+		return;
+
+	CCubeManager::Get_Instance()->RemoveCubeDesc(m_vDeletePos);
+	m_pDeleteCubeTemp->SetDead();
+	m_pDeleteCubeTemp = nullptr;
+	m_MinDist = 99999.f;
+	ZeroMemory(&m_vDeletePos, sizeof(_float3));
+}
+
+
+
 
 void CImGui_Manager::Free()
 {

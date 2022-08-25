@@ -12,6 +12,7 @@
 #include "VoxelCube.h"
 #include "SetVoxelCube.h"
 #include "VoxelModel.h"
+#include "SetVoxelModel.h"
 
 #include "CubeManager.h"
 
@@ -130,6 +131,9 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 		CCamera_Free::Create(m_pGraphic_Device))))
 		return E_FAIL;
 
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_SetVoxelModel"),
+		CSetVoxelModel::Create(m_pGraphic_Device))))
+		return E_FAIL;
 
 
 
@@ -153,13 +157,17 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 
 	/* For.Prototype_Component_Texture_Cube */
 	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Cube"),
-		CTexture::Create(m_pGraphic_Device, CTexture::TYPE_CUBEMAP, TEXT("../Bin/Resources/Textures/Cube/Tile%d.dds"), 29))))
+		CTexture::Create(m_pGraphic_Device, CTexture::TYPE_CUBEMAP, TEXT("../Bin/Resources/Textures/Cube/Tile%d.dds"), 31))))
 		return E_FAIL;
 
 	/* For.Prototype_Component_Texture_Cube */
 	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Texture_Tile"),
 		CTexture::Create(m_pGraphic_Device, CTexture::TYPE_DEFAULT, TEXT("../Bin/Resources/Textures/Cube/TileImage/Tile%d.png"), 20))))
 		return E_FAIL;
+
+
+
+
 
 
 
@@ -174,6 +182,8 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_VIBuffer_VoxelCube"),
 		CVIBuffer_Voxel::Create(m_pGraphic_Device))))
 		return E_FAIL;
+
+
 
 
 

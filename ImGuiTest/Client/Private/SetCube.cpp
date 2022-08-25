@@ -39,6 +39,9 @@ HRESULT CSetCube::Initialize(void * pArg)
 
 void CSetCube::Tick(_float fTimeDelta)
 {
+	if (CImGui_Manager::Get_Instance()->Get_CanMouse())
+		return;
+
 	CGameInstance* pGameInstance = CGameInstance::Get_Instance();
 	Safe_AddRef(pGameInstance);
 
@@ -57,10 +60,10 @@ void CSetCube::Tick(_float fTimeDelta)
 
 		if (pGameInstance->Get_DIKState(DIK_X) & 0x80)
 		{
+
 			if (!m_bKeyDown)
 			{
-				CCubeManager::Get_Instance()->RemoveCubeDesc(vPos);
-				m_bDead = true;
+				CImGui_Manager::Get_Instance()->SetDeleteCube(this, vPos);
 			}
 			m_bKeyDown = true;
 		}

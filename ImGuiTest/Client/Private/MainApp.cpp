@@ -65,6 +65,7 @@ void CMainApp::Tick(_float fTimeDelta)
 
 	CCubeManager::Get_Instance()->Tick(fTimeDelta);
 
+	CImGui_Manager::Get_Instance()->DeleteCube();
 }
 
 HRESULT CMainApp::Render()

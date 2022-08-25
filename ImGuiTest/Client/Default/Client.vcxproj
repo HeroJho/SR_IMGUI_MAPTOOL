@@ -173,6 +173,7 @@
     <ClInclude Include="..\Public\Monster.h" />
     <ClInclude Include="..\Public\Player.h" />
     <ClInclude Include="..\Public\SetVoxelCube.h" />
+    <ClInclude Include="..\public\SetVoxelModel.h" />
     <ClInclude Include="..\Public\Terrain.h" />
     <ClInclude Include="..\Public\VoxelCube.h" />
     <ClInclude Include="..\public\VoxelModel.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="..\Private\Monster.cpp" />
     <ClCompile Include="..\Private\Player.cpp" />
     <ClCompile Include="..\Private\SetVoxelCube.cpp" />
+    <ClCompile Include="..\private\SetVoxelModel.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />
     <ClCompile Include="..\Private\VoxelCube.cpp" />
     <ClCompile Include="..\private\VoxelModel.cpp" />

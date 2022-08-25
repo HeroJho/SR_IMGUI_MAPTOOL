@@ -44,6 +44,7 @@ public:
 	}
 
 	void Set_Scaled(_float3 vScale);
+	void Set_Scaled(_float vScale);
 	void Increase_ScaledXZ();
 	void Decrease_ScaledXZ();
 	void Increase_ScaledY();
@@ -63,6 +64,8 @@ public:
 	void Go_Left(_float fTimeDelta);
 
 	void Rotation(_float3 vAxis, _float fRadian);
+	void RotationThree(_float3 vAxis, _float fRadian, _float3 vAxis2, _float fRadian2, _float3 vAxis3, _float fRadian3);
+	
 	void Turn(_float3 vAxis, _float fTimeDelta);
 	void LookAt(_float3 vTargetPos);
 	void LookAtForLandObject(_float3 vTargetPos);
