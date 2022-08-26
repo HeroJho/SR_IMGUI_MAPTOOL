@@ -439,7 +439,7 @@ void CCubeManager::LoadMapData(void)
 {
 	RemoveAllCubeDesc();
 
-	HANDLE		hFile = CreateFile(L"../Data/Map/Map_DarkMage.dat",			// 파일 경로와 이름 명시
+	HANDLE		hFile = CreateFile(L"../Data/Map/Map_Henesys.dat",			// 파일 경로와 이름 명시
 		GENERIC_READ,				// 파일 접근 모드 (GENERIC_WRITE 쓰기 전용, GENERIC_READ 읽기 전용)
 		NULL,						// 공유방식, 파일이 열려있는 상태에서 다른 프로세스가 오픈할 때 허용할 것인가, NULL인 경우 공유하지 않는다
 		NULL,						// 보안 속성, 기본값	
